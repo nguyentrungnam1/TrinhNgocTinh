@@ -1,13 +1,16 @@
 import React from 'react'
-import { View, Text } from 'react-native'
-import DiscoverMore from '../Components/DiscoverMore'
-import HeaderTabs from '../Components/HeaderTabs'
+import { View, Text, SafeAreaView } from 'react-native'
+import DiscoverDetail from '../Components/Home/DiscoverDetail'
+import DiscoverMore from '../Components/Home/DiscoverMore'
+import HeaderTabs from '../Components/Home/HeaderTabs'
+
 
 export default function HomeScreen() {
     return (
-        <View>
+        <SafeAreaView>
             <HeaderTabs/>
             <DiscoverMore/>
-        </View>
+            <DiscoverDetail/>
+        </SafeAreaView>
     )
 }

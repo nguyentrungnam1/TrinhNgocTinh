@@ -51,6 +51,18 @@ const localRestaurants = [
     name: "India's Grill",
     date: "16/10",
   },
+  {
+    image_url:
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGludGVyaW9yfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
+    name: "India's Grill",
+    date: "16/10",
+  },
+  {
+    image_url:
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGludGVyaW9yfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
+    name: "India's Grill",
+    date: "16/10",
+  },
 ];
 
 const windowWidth = Dimensions.get("window").width;
@@ -58,11 +70,12 @@ const windowHeight = Dimensions.get("window").height;
 
 export default function DiscoverDetail() {
   return (
-    <ScrollView>
+    <ScrollView showsHorizontalScrollIndicator = {false}>
       {localRestaurants.map((item, index) => (
         <View key={index} style={{flexDirection: "row"}}>
         <View>
               <DetailImage image={item.image_url} />
+              <DetailInfo name = {item.name} date = {item.date}/>
         </View>     
         </View>
       ))}
@@ -75,13 +88,13 @@ const DetailImage = (props) => (
       source={{
         uri: props.image,
       }}
-      style={{ width: 170, height: 170 }}
+      style={{ width: windowWidth, height: 170 }}
     />
   </>
 );
 const DetailInfo = (props) => (
   <View>
-    <Text>{props.text}</Text>
+    <Text>{props.name}</Text>
     <Text>{props.date}</Text>
     <AntDesign name="calendar" size={15} />
   </View>
