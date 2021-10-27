@@ -60,6 +60,7 @@ export default function TabNavigation() {
         name="Khác"
         component={AccountScreen}
         options={{
+          headerShown: false,
           tabBarIcon: ({color}) => <FontAwesome name="user-circle-o" size={30}  color = {color}/>,
         }}
       />
