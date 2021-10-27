@@ -1,6 +1,14 @@
 import React from "react";
-import { View, Text, Image, ScrollView, Dimensions } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/core";
 
 const localRestaurants = [
   {
@@ -69,15 +77,21 @@ const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 export default function DiscoverDetail() {
+  const navigation = useNavigation();
   return (
-    <ScrollView showsHorizontalScrollIndicator = {false}>
+    <ScrollView showsHorizontalScrollIndicator={false}>
       {localRestaurants.map((item, index) => (
-        <View key={index} style={{flexDirection: "row"}}>
-        <View>
+        <TouchableOpacity key = {index}
+          activeOpacity={0.9}
+          onPress={() => navigation.navigate("NewDetail")}
+        >
+          <View style={{ flexDirection: "row" }}>
+            <View>
               <DetailImage image={item.image_url} />
-              <DetailInfo name = {item.name} date = {item.date}/>
-        </View>     
-        </View>
+              <DetailInfo name={item.name} date={item.date} />
+            </View>
+          </View>
+        </TouchableOpacity>
       ))}
     </ScrollView>
   );

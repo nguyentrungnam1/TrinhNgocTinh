@@ -3,6 +3,8 @@ import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import DiscoverDetail from "./DiscoverDetail";
 
+
+
 export default function DiscoverMore() {
   const [activeButton, setActiveButton] = useState("Ưu đãi đặc biệt");
   return (
@@ -48,6 +50,7 @@ const ButtonDiscover = (props) => (
       marginRight: 5,
     }}
     onPress={() => props.setActiveButton(props.text)}
+    
   >
     <Text
       style={{
