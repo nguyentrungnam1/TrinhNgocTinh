@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -10,8 +10,11 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
+  Alert
 } from "react-native";
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/core";
+import { firebaseApp } from "../../firebase";
 
 const widthWindow = Dimensions.get("window").width;
 const heightWindow = Dimensions.get("window").height;
@@ -32,11 +35,63 @@ const styles = StyleSheet.create({
 });
 
 export default function Login({ navigation }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleLogin = () => {
+    firebaseApp
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        Alert.alert("Alert Title", "Đăng nhập thành công", [
+          { text: "OK", onPress: () => navigation.navigate("TabNavigation") },
+        ]);
+      })
+      .catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode === "auth/wrong-password") {
+          alert("Sai mật khẩu");
+        } else {
+          alert(errorMessage);
+        }
+        console.log(error);
+      });
+  };
   return (
     <View>
       <LoginLogo />
       <View style={{ marginLeft: 10 }}>
-        <LoginSignIn navigation = {navigation}/>
+        {/* <LoginSignIn handleLogin={handleLogin} /> */}
+        <View style={{ marginTop: 10 }}>
+          <View style={styles.flexC}>
+            <AntDesign name="user" size={30} style={[{ top: 5 }]} />
+            <TextInput
+              placeholder="Email"
+              value={email}
+              onChangeText={(email) => setEmail(email)}
+              style={[styles.size, styles.input]}
+            />
+          </View>
+          <View style={styles.flexC}>
+            <AntDesign name="lock" size={30} style={[{ top: 5 }]} />
+            <TextInput
+              placeholder="Mật Khẩu"
+              value={password}
+              onChangeText={(password) => setPassword(password)}
+              secureTextEntry={true}
+              style={[styles.size, styles.input]}
+            />
+          </View>
+          <View style={{ margin: 15 }}>
+            <Button title="Đăng nhập" onPress={handleLogin} />
+            <TouchableOpacity>
+              <Text style={{ color: "blue", alignSelf: "center" }}>
+                Quên mật khẩu
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
         <LoginOther navigation={navigation} />
       </View>
     </View>
@@ -58,30 +113,9 @@ const LoginLogo = () => (
     </TouchableWithoutFeedback>
   </View>
 );
-const LoginSignIn = ({navigation}) => (
-  <View style = {{marginTop:10}}>
-    <View style={styles.flexC}>
-      <AntDesign name="user" size={30} style={[{ top: 5 }]} />
-      <TextInput placeholder="Email" style={[styles.size, styles.input]} />
-    </View>
-    <View style={styles.flexC}>
-      <AntDesign name="lock" size={30} style={[{ top: 5 }]} />
-      <TextInput
-        placeholder="Mật Khẩu"
-        secureTextEntry={true}
-        style={[styles.size, styles.input]}
-      />
-    </View>
-    <View style={{ margin: 15 }}>
-      <Button title="Đăng nhập" onPress = {()=>(navigation.navigate("TabNavigation"))}/>
-      <TouchableOpacity>
-        <Text style={{ color: "blue", alignSelf: "center" }}>
-          Quên mật khẩu
-        </Text>
-      </TouchableOpacity>
-    </View>
-  </View>
-);
+// const LoginSignIn = ({ handleLogin }) => (
+
+// )
 
 const LoginOther = ({ navigation }) => (
   <>
