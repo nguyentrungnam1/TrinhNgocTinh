@@ -62,7 +62,7 @@ export default function AccountScreen({navigation}) {
 const AccountLogo = () => (
   <View>
     <Image
-      source={require("../assets/icon/logo-coffe.png")}
+      source={require("../assets/icons/logo-coffe.png")}
       style={{
         width: widthWindow,
         height: 200,

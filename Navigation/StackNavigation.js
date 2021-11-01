@@ -15,11 +15,11 @@ const Stack = createStackNavigator();
 export default function StackNavigation() {
     return (
         <NavigationContainer>
-            <Stack.Navigator screenOptions = {{headerShown: false}}>
-                <Stack.Screen name = "Login" component = {Login}/>
-                <Stack.Screen name = "Register" component = {Register}/>
+            <Stack.Navigator >
+                {/* <Stack.Screen name = "Login" component = {Login}/>
+                <Stack.Screen name = "Register" component = {Register}/> */}
                 <Stack.Screen name = "TabNavigation" component = {TabNavigation}  options = {{headerShown: false}}/>
-                <Stack.Screen name = "NewDetail" component = {NewDetail}/>
+                <Stack.Screen name = "NewDetail" component = {NewDetail} options = {{title:"Chi tiết"}}/>
             </Stack.Navigator>
         </NavigationContainer>
     )

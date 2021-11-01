@@ -11,30 +11,32 @@ const images = [
   },
 ];
 
-export default function About() {
+export default function About(props) {
+  const {image,title,text} = props.route.params;
   return (
     <SafeAreaView>
-      <ScrollView>
-        <AboutTitle title="Nguyễn Trung Nam" />
-        <AboutImage />
+      <ScrollView >
+        <AboutTitle title={title}/>
+        <AboutImage img = {image} />
         <Divider width={1} />
-        <AboutText text = "NGUYÊN tRUNG nAM"/>
+        <AboutText text = {text}/>
+        <AboutImage img = {image} />
       </ScrollView>
     </SafeAreaView>
   );
 }
 
 const AboutTitle = (props) => (
-  <>
-    <Text style={{ fontSize: 30, fontWeight: "300" }}>{props.title}</Text>
-  </>
+  <View style = {{marginTop: 20}}>
+    <Text style={{ fontSize: 20, fontWeight: "900" }}>{props.title}</Text>
+  </View>
 );
 
 const AboutImage = (props) => (
   <View style={{ marginBottom: 10, marginTop: 30 }}>
     <Image
       source={{
-        uri: "https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg",
+        uri: props.img,
       }}
       style={{ width: windowWidth, height: (windowHeight/3) }}
     />
@@ -42,6 +44,6 @@ const AboutImage = (props) => (
 );
 const AboutText = (props) => (
   <>
-    <Text>{props.text}</Text>
+    <Text style = {{fontSize: 20}}>{props.text}</Text>
   </>
 );

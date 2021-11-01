@@ -76,7 +76,7 @@ export default function Register({ navigation }) {
         <View>
           <TouchableWithoutFeedback key={Keyboard.dismiss}>
             <Image
-              source={require("../../assets/icon/logo-coffe.png")}
+              source={require("../../assets/icons/logo-coffe.png")}
               style={{
                 width: widthWindow,
                 height: 200,
