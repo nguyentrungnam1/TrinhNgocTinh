@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -8,9 +8,11 @@ import {
   SafeAreaView,
   TouchableOpacity,
   ScrollView,
+  CheckBox,
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { Divider } from "react-native-elements";
+import BouncyCheckbox from "react-native-bouncy-checkbox"
 
 const foods = [
   {
@@ -116,30 +118,31 @@ const foods = [
 const widthWindow = Dimensions.get("window").width;
 
 export default function FoodsItem() {
+ 
   return (
     <View>
       <FoodSearch />
-      <ScrollView style = {{height: 700}}>
+      <ScrollView style={{ height: 700 }}>
         {foods.map((food, index) => (
-          <TouchableOpacity key={index}>
-            <View
-              style={{
-                flexDirection: "row",
-                margin: 7,
-                backgroundColor: "white",
-                height: 110,
-                borderRadius: 5,
-              }}
-            >
-              <FoodImages image={food.image_url} />
-              <FoodInfo
-                name={food.name}
-                description={food.info}
-                price={food.price}
-              />
-            </View>
+          <View
+            key={index}
+            style={{
+              flexDirection: "row",
+              margin: 7,
+              backgroundColor: "white",
+              height: 110,
+              borderRadius: 5,
+            }}
+          >
+            <BouncyCheckbox iconStyle = {{borderRadius:0}}/>
+            <FoodImages image={food.image_url} />
+            <FoodInfo
+              name={food.name}
+              description={food.info}
+              price={food.price}
+            />
             <Divider width={0.5} />
-          </TouchableOpacity>
+          </View>
         ))}
       </ScrollView>
     </View>
@@ -147,6 +150,7 @@ export default function FoodsItem() {
 }
 
 const FoodSearch = () => (
+
   <View
     style={{
       width: widthWindow,
@@ -197,7 +201,7 @@ const FoodImages = (props) => (
   </View>
 );
 const FoodInfo = (props) => (
-  <View style={{ paddingLeft: 10}}>
+  <View style={{ paddingLeft: 10 }}>
     <Text style={{ fontSize: 15, fontWeight: "300", paddingBottom: 5 }}>
       {props.name}
     </Text>
