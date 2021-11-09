@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, SafeAreaView, Image, ScrollView, Dimensions } from "react-native";
+import { View, Text, SafeAreaView, Image, ScrollView, Dimensions, TouchableOpacity } from "react-native";
 import { Divider } from "react-native-elements";
 
 const windowWidth = Dimensions.get ("window").width;
@@ -34,12 +34,14 @@ const AboutTitle = (props) => (
 
 const AboutImage = (props) => (
   <View style={{ marginBottom: 10, marginTop: 30 }}>
+  <TouchableOpacity >
     <Image
       source={{
         uri: props.img,
       }}
       style={{ width: windowWidth, height: (windowHeight/3) }}
     />
+  </TouchableOpacity>
   </View>
 );
 const AboutText = (props) => (

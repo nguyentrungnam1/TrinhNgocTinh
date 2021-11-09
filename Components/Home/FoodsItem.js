@@ -13,112 +13,23 @@ import {
 import { FontAwesome } from "@expo/vector-icons";
 import { Divider } from "react-native-elements";
 import BouncyCheckbox from "react-native-bouncy-checkbox"
+import { useDispatch } from "react-redux";
 
-const foods = [
-  {
-    name: "Cà Phê Sữa đá",
-    image_url:
-      "https://minio.thecoffeehouse.com/image/admin/caphe-suada--bacsiu_408274_400x400.jpg",
-    info: "Cà phê được pha phin truyền thống kết hợp với sữa đặc tạo nên hương vị đậm đà, hài hòa giữa vị ngọt đầu lưỡi và vị đắng thanh thoát nơi hậu vị.",
-    price: 32000,
-  },
-  {
-    name: "Cà Phê Sữa Nóng",
-    image_url:
-      "https://minio.thecoffeehouse.com/image/admin/cfsua-nong_235317_400x400.jpg",
-    info: "Cà phê được pha phin truyền thống kết hợp với sữa đặc tạo nên hương vị đậm đà, hài hòa giữa vị ngọt đầu lưỡi và vị đắng thanh thoát nơi hậu vị.",
-    price: 35000,
-  },
-  {
-    name: "Cà Phê Sữa Đá Chai Fresh 250ML",
-    image_url:
-      "https://minio.thecoffeehouse.com/image/admin/BottleCFSD_496652_400x400.jpg",
-    info: "Vẫn là hương vị cà phê sữa đậm đà quen thuộc của The Coffee House nhưng khoác lên mình một chiếc áo mới tiện lợi hơn, tiết kiệm hơn phù hợp với bình thường mới, giúp bạn tận hưởng một ngày dài trọn vẹn. *Sản phẩm dùng ngon nhất trong ngày. *Sản phẩm mặc định mức đường và không đá.",
-    price: 79000,
-  },
-  {
-    name: "Cà Phê Đen Nóng",
-    image_url:
-      "https://minio.thecoffeehouse.com/image/admin/cfden_nong_016851_400x400.jpg",
-    info: "Cà phê được pha phin truyền thống kết hợp với sữa đặc tạo nên hương vị đậm đà, hài hòa giữa vị ngọt đầu lưỡi và vị đắng thanh thoát nơi hậu vị.",
-    price: 35000,
-  },
-  {
-    name: "Caramel Macchiato Đá",
-    image_url:
-      "https://minio.thecoffeehouse.com/image/admin/caramel-macchiato_143623_400x400.jpg",
-    info: "Cà phê được pha phin truyền thống kết hợp với sữa đặc tạo nên hương vị đậm đà, hài hòa giữa vị ngọt đầu lưỡi và vị đắng thanh thoát nơi hậu vị.",
-    price: 50000,
-  },
-  {
-    name: "Cà Phê Sữa đá",
-    image_url:
-      "https://minio.thecoffeehouse.com/image/admin/caphe-suada--bacsiu_408274_400x400.jpg",
-    info: "Cà phê được pha phin truyền thống kết hợp với sữa đặc tạo nên hương vị đậm đà, hài hòa giữa vị ngọt đầu lưỡi và vị đắng thanh thoát nơi hậu vị.",
-    price: 32000,
-  },
-  {
-    name: "Cà Phê Sữa Nóng",
-    image_url:
-      "https://minio.thecoffeehouse.com/image/admin/cfsua-nong_235317_400x400.jpg",
-    info: "Cà phê được pha phin truyền thống kết hợp với sữa đặc tạo nên hương vị đậm đà, hài hòa giữa vị ngọt đầu lưỡi và vị đắng thanh thoát nơi hậu vị.",
-    price: 35000,
-  },
-  {
-    name: "Cà Phê Sữa Đá Chai Fresh 250ML",
-    image_url:
-      "https://minio.thecoffeehouse.com/image/admin/BottleCFSD_496652_400x400.jpg",
-    info: "Vẫn là hương vị cà phê sữa đậm đà quen thuộc của The Coffee House nhưng khoác lên mình một chiếc áo mới tiện lợi hơn, tiết kiệm hơn phù hợp với bình thường mới, giúp bạn tận hưởng một ngày dài trọn vẹn. *Sản phẩm dùng ngon nhất trong ngày. *Sản phẩm mặc định mức đường và không đá.",
-    price: 79000,
-  },
-  {
-    name: "Cà Phê Đen Nóng",
-    image_url:
-      "https://minio.thecoffeehouse.com/image/admin/cfden_nong_016851_400x400.jpg",
-    info: "Cà phê được pha phin truyền thống kết hợp với sữa đặc tạo nên hương vị đậm đà, hài hòa giữa vị ngọt đầu lưỡi và vị đắng thanh thoát nơi hậu vị.",
-    price: 35000,
-  },
-  {
-    name: "Caramel Macchiato Đá",
-    image_url:
-      "https://minio.thecoffeehouse.com/image/admin/caramel-macchiato_143623_400x400.jpg",
-    info: "Cà phê được pha phin truyền thống kết hợp với sữa đặc tạo nên hương vị đậm đà, hài hòa giữa vị ngọt đầu lưỡi và vị đắng thanh thoát nơi hậu vị.",
-    price: 50000,
-  },
-  {
-    name: "Cà Phê Đen Nóng",
-    image_url:
-      "https://minio.thecoffeehouse.com/image/admin/cfden_nong_016851_400x400.jpg",
-    info: "Cà phê được pha phin truyền thống kết hợp với sữa đặc tạo nên hương vị đậm đà, hài hòa giữa vị ngọt đầu lưỡi và vị đắng thanh thoát nơi hậu vị.",
-    price: 35000,
-  },
-  {
-    name: "Caramel Macchiato Đá",
-    image_url:
-      "https://minio.thecoffeehouse.com/image/admin/caramel-macchiato_143623_400x400.jpg",
-    info: "Cà phê được pha phin truyền thống kết hợp với sữa đặc tạo nên hương vị đậm đà, hài hòa giữa vị ngọt đầu lưỡi và vị đắng thanh thoát nơi hậu vị.",
-    price: 50000,
-  },
-  {
-    name: "Cà Phê Đen Nóng",
-    image_url:
-      "https://minio.thecoffeehouse.com/image/admin/cfden_nong_016851_400x400.jpg",
-    info: "Cà phê được pha phin truyền thống kết hợp với sữa đặc tạo nên hương vị đậm đà, hài hòa giữa vị ngọt đầu lưỡi và vị đắng thanh thoát nơi hậu vị.",
-    price: 35000,
-  },
-  {
-    name: "Caramel Macchiato Đá",
-    image_url:
-      "https://minio.thecoffeehouse.com/image/admin/caramel-macchiato_143623_400x400.jpg",
-    info: "Cà phê được pha phin truyền thống kết hợp với sữa đặc tạo nên hương vị đậm đà, hài hòa giữa vị ngọt đầu lưỡi và vị đắng thanh thoát nơi hậu vị.",
-    price: 50000,
-  },
-];
+
 
 const widthWindow = Dimensions.get("window").width;
 
-export default function FoodsItem() {
- 
+export default function FoodsItem({foods}) {
+  const dispatch = useDispatch();
+  const selectItem = (item, checkboxValue) =>
+  dispatch({
+    type: "ADD_TO_CART",
+    payload: {
+      ...item,
+      // restaurantName: restaurantName,
+      checkboxValue: checkboxValue,
+    },
+  });
   return (
     <View>
       <FoodSearch />
@@ -134,7 +45,7 @@ export default function FoodsItem() {
               borderRadius: 5,
             }}
           >
-            <BouncyCheckbox iconStyle = {{borderRadius:0}}/>
+            <BouncyCheckbox iconStyle = {{borderRadius:0}} onPress = {(checkboxValue)=>selectItem(food,checkboxValue)}/>
             <FoodImages image={food.image_url} />
             <FoodInfo
               name={food.name}

@@ -43,7 +43,7 @@ export default function Login({ navigation }) {
       .signInWithEmailAndPassword(email, password)
       .then(() => {
         Alert.alert("Alert Title", "Đăng nhập thành công", [
-          { text: "OK", onPress: () => navigation.navigate("TabNavigation") },
+          { text: "OK", onPress: () => navigation.push("TabNavigation") },
         ]);
       })
       .catch(function (error) {

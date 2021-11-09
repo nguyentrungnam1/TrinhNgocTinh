@@ -50,7 +50,7 @@ export default function AccountScreen({navigation}) {
           <AccountItem icon="filetext1" text="Điều khoản và điều kiện" />
           <AccountItem icon="questioncircleo" text="Câu hỏi thường gặp" />
           <AccountItem icon="exclamationcircleo" text="Liên hệ" />
-          <TouchableOpacity onPress = {()=>(navigation.navigate("Login"))}>
+          <TouchableOpacity onPress = {()=>(navigation.replace("Login"))}>
             <AccountItem icon="logout" text="Đăng Xuất" />
           </TouchableOpacity>
         </View>

@@ -111,7 +111,7 @@ export default function DiscoverDetail() {
           key={index}
           activeOpacity={0.9}
           onPress={() =>
-            navigation.navigate("NewDetail", {
+            navigation.push("NewDetail", {
               image: item.image_url,
               text: item.text,
               date: item.date,

@@ -10,10 +10,17 @@ import OrderScreen from "../Screens/OrderScreen";
 import StackNavigation from "./StackNavigation";
 import StoreScreen from "../Screens/StoreScreen";
 import NotifiScreen from "../Screens/NotifiScreen";
+import { Provider as ReduxProvider } from "react-redux";
+import configureStore from "../Redux/store";
+
+
+const store = configureStore();
 
 const Tab = createBottomTabNavigator();
 export default function TabNavigation() {
   return (
+    <ReduxProvider store = {store}>
+
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{ 
@@ -65,5 +72,6 @@ export default function TabNavigation() {
         }}
       />
     </Tab.Navigator>
+    </ReduxProvider>
   );
 }

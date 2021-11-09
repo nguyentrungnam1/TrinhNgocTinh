@@ -1,7 +1,22 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
+import { useSelector } from "react-redux";
+import cartReducer from "../../Redux/reducers/cartReduce";
 
 export default function ViewCart() {
+  const items = useSelector((state) => state.cartReducer.selectedItems.items);
+
+ 
+  const total = items
+    .map((item) => Number(item.price.replace("$", "")))
+    .reduce((prev, curr) => prev + curr, 0);
+
+  const totalUSD = total.toLocaleString("en", {
+    style: "currency",
+    currency: "USD",
+  });
+    console.log(totalUSD);
+  
   return (
     <View
       style={{
@@ -10,7 +25,7 @@ export default function ViewCart() {
         justifyContent: "center",
         flexDirection: "row",
         position: "absolute",
-        bottom: 80,
+        bottom: 130,
         zIndex: 999,
       }}
     >
@@ -33,9 +48,7 @@ export default function ViewCart() {
             position: "relative",
           }}
         >
-          <Text style={{ color: "white", fontSize: 20}}>
-            Giỏ Hàng
-          </Text>
+          <Text style={{ color: "white", fontSize: 20 }}>Giỏ Hàng</Text>
         </TouchableOpacity>
       </View>
     </View>
