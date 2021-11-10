@@ -19,7 +19,7 @@ let defaultState = {
           newState.selectedItems = {
             items: [
               ...newState.selectedItems.items.filter(
-                (item) => item.title !== action.payload.title
+                (item) => item.name !== action.payload.name
               ),
             ],
             // restaurantName: action.payload.restaurantName,
