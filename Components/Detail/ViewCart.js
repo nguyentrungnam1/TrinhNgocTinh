@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Modal, StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 import cartReducer from "../../Redux/reducers/cartReduce";
 import OrderItem from "./OrderItem";
+import { firebaseApp } from "../../firebase";
 
 export default function ViewCart() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -53,6 +54,15 @@ export default function ViewCart() {
     },
   });
 
+  const addOrderToFireBase = () =>{
+    const db = firebaseApp.firestore();
+    db.collection("orders")
+      .add({
+        items: items,
+        // createdAt: firebaseApp.firestore.FieldValue.serverTimestamp(),
+      })
+  };
+
   const checkoutModalContent = () => {
     return (
       <>
@@ -78,7 +88,7 @@ export default function ViewCart() {
                   position: "relative",
                 }}
                 onPress={() => {
-                  // addOrderToFireBase();
+                  addOrderToFireBase();
                   setModalVisible(false);
                 }}
               >

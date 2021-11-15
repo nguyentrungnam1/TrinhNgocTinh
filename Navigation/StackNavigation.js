@@ -16,8 +16,8 @@ export default function StackNavigation() {
     return (
         <NavigationContainer>
             <Stack.Navigator >
-                {/* <Stack.Screen name = "Login" component = {Login}/>
-                <Stack.Screen name = "Register" component = {Register}/> */}
+                <Stack.Screen name = "Login" component = {Login}/>
+                <Stack.Screen name = "Register" component = {Register}/>
                 <Stack.Screen name = "TabNavigation" component = {TabNavigation}  options = {{headerShown: false}}/>
                 <Stack.Screen name = "NewDetail" component = {NewDetail} options = {{title:"Chi tiết"}}/>
             </Stack.Navigator>
